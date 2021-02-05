@@ -5,10 +5,11 @@ class CatsController < ApplicationController
         render :index
     end
 
-    # def show
-
-
-    # end
+    def show
+        @cat = Cat.find(params[:id])
+        render :show
+        
+    end
 
 
 end
