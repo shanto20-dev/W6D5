@@ -25,4 +25,6 @@ class Cat < ApplicationRecord
     def age
        p Time.now.year - self[:birth_date].year
     end
+
+    has_many :cat_rental_requests, dependent: :destroy
 end
