@@ -6,8 +6,8 @@ class CatRentalRequest < ApplicationRecord
     
     belongs_to :cat
 
-    def overlapping_requests(current_cat_request)
+    def overlapping_requests
         CatRentalRequest
-        .where.not("start_date BETWEEN (?)[start_date] AND (?)[end_date] OR end_date BETWEEN (?)[start_date] AND (?)[end_date]",current_cat_request)
+        .where.not("(start_date BETWEEN (?).start_date AND (?).end_date) OR (end_date BETWEEN (?).start_date AND (?).end_date)", self, self, self, self)
     end
 end
