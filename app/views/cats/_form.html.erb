@@ -1,0 +1,40 @@
+<% if action == :edit %>
+    <% action_url = cat_url(cat) %>
+    <% button_text = "Update Cat!" %>
+    <% else %>
+    <%action_url = cats_url%>
+    <% button_text = "Create Cat!" %>
+    <% end %>
+
+<form action="<%= action_url %>" method="POST">
+
+<% if action == :edit %>
+<input type='hidden' name="_method" value="PATCH">
+<%end%>
+
+    <label for="Name">Name</label>
+    <input id="Name" type="text" name="cat[name]" value="<%=cat.name%>">
+    <br>
+
+    <label for="birthday">Birthday</label>
+    <input id="birthday" type="date" name="cat[birth_date]"value="<%=cat.birth_date%>">
+    <br>
+
+    <label for="Color">Color</label>
+    <input id="Color" type="text" name="cat[color]"value="<%=cat.color%>">
+    <br>
+
+     <label for="Sex">Sex</label>
+     <select name="cat[sex]" id="Sex">
+        <option disabled> -- Please select Sex -- </option>
+        <option value="M" <%= cat.sex == 'M' ? "selected" : ""  %>> Male </option>
+        <option value="F" <%= cat.sex == 'F' ? "selected" : ""  %>> Female </option>
+     </select>
+    <br>
+
+    <label for="Description">Description</label>
+    <textarea name="cat[description]"><%=cat.description %></textarea>
+    <br>
+
+    <button><%=button_text%></button>
+</form>
